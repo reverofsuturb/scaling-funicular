@@ -6,20 +6,30 @@ import {
 
 const auth = getAuth();
 
-createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
+const registerUser = async (email: string, password: string) => {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
     const user = userCredential.user;
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMesssage = error.message;
-  });
+  } catch (e) {
+    const errorCode = e.code;
+    const errorMesssage = e.message;
+  }
+};
 
-signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
+const signInUser = async (email: string, password: string) => {
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
     const user = userCredential.user;
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMesssage = error.message;
-  });
+  } catch (e) {
+    const errorCode = e.code;
+    const errorMesssage = e.message;
+  }
+};
